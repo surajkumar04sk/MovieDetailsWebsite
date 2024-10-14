@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.movie-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.movie-card {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+}
+
+    .movie-card img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+.add-movie-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #ff6347;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}

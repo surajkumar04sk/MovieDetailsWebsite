@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MovieDetailsWebsite.Models.Movie>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="stylesheet" href="~/css/main.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/Movie/AddMovie">Add Movie</a>
+        <a href="/Movie/About">About</a> <!-- Ensure this is correct -->
+    </nav>
+
+    <h1>Movies</h1>
+
+    <div class="movie-list">
+        @foreach (var movie in Model)
+        {
+            <div class="movie-card"
+                 onclick="openModal(@movie.MovieId, '@movie.Title', '@movie.Description', '@movie.Overview', '@movie.ReleaseDate.ToString("MM/dd/yyyy")', '@movie.PosterUrl')">
+                <img src="@movie.PosterUrl" alt="@movie.Title" class="movie-poster" />
+                <h2>@movie.Title</h2>
+                <p>Release Date: @movie.ReleaseDate.ToShortDateString()</p>
+            </div>
+        }
+    </div>
+
+    @* <a href="/Movie/AddMovie" class="add-movie-button">Add Movie</a> *@
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <img id="modal-poster" src="" alt="" style="width: 100%; border-radius: 10px;" />
+            <p id="modal-release-date"></p>
+            <p id="modal-overview"></p>
+            <p id="modal-description"></p> <!-- Added description field -->
+        </div>
+    </div>
+
+    <script>
+        function openModal(movieId, title, description, overview, releaseDate, posterUrl) {
+            document.getElementById("modal-title").innerText = title;
+            document.getElementById("modal-poster").src = posterUrl;
+            document.getElementById("modal-release-date").innerText = "Release Date: " + releaseDate; // Corrected release date
+            document.getElementById("modal-overview").innerText = "Overview: " + overview; // Corrected overview
+            document.getElementById("modal-description").innerText = "Description: " + description; // Added description
+
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            var modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
