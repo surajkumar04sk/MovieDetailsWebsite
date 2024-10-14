@@ -59,7 +59,18 @@ To run this project locally:
      } 
    } 
    
-5. Build and run the project.
+5. create the `Movies` table:
+   ```sql
+   CREATE TABLE [dbo].[Movies](
+    [Id] [int] IDENTITY(1,1) NOT NULL,
+      NOT NULL,
+    [ReleaseDate] [date] NOT NULL,
+    [Description] [nvarchar](max) NULL,
+    [Overview] [nvarchar](max) NULL,
+      NULL,
+    [MovieId] [int] NOT NULL )
+
+6. Build and run the project.
 
 ---
 
